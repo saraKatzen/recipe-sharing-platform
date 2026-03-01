@@ -1,0 +1,88 @@
+<div class="main-page-wrapper">
+  <div class="header-area text-center mb-5">
+    <h2 class="page-main-title">ספר המתכונים שלנו</h2>
+    <div class="title-underline"></div>
+  </div>
+
+  <div class="filter-section-compact">
+    <div class="filter-container-horizontal">
+      
+      <div class="filter-group-inline">
+        <span class="filter-label-icon"><i class="bi bi-funnel-fill"></i></span>
+        <div class="chips-group">
+          <button (click)="selectedType = 'הכל'; applyFilters()" [class.active]="selectedType === 'הכל'" class="chip">הכל</button>
+          <button (click)="selectedType = 'בשרי'; applyFilters()" [class.active]="selectedType === 'בשרי'" class="chip">בשרי</button>
+          <button (click)="selectedType = 'חלבי'; applyFilters()" [class.active]="selectedType === 'חלבי'" class="chip">חלבי</button>
+          <button (click)="selectedType = 'פרווה'; applyFilters()" [class.active]="selectedType === 'פרווה'" class="chip">פרווה</button>
+        </div>
+      </div>
+
+      <div class="vertical-divider"></div>
+
+      <div class="filter-group-inline">
+        <span class="filter-label-icon"><i class="bi bi-sort-numeric-down"></i></span>
+        <div class="chips-group">
+          <button (click)="sortBy = 'none'; applyFilters()" [class.active]="sortBy === 'none'" class="chip">ללא</button>
+          <button (click)="sortBy = 'time'; applyFilters()" [class.active]="sortBy === 'time'" class="chip">זמן</button>
+          <button (click)="sortBy = 'rating'; applyFilters()" [class.active]="sortBy === 'rating'" class="chip">דירוג</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" 
+           [(ngModel)]="searchTerm" 
+           (input)="onSearchChange()" 
+           placeholder="חפש מתכון אחר..."
+           class="form-control">
+    <i class="fas fa-search search-icon"></i>
+  </div>
+
+  <div *ngIf="selectedCategory || searchTerm" class="alert alert-info d-flex justify-content-between">
+    <span>מציג תוצאות עבור: <strong>{{ selectedCategory || searchTerm }}</strong></span>
+    <button class="btn btn-sm btn-outline-secondary" (click)="clearFilters()">נקה הכל</button>
+  </div>
+
+<div class="loader-container" *ngIf="isLoading">
+    
+    <div class="dots-loader">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <p class="loader-text">מלקט את המתכונים הכי טעימים...</p>
+  </div>
+
+  <div class="recipe-grid" *ngIf="!isLoading">
+    <div class="recipe-card" *ngFor="let recipe of displayedRecipes">
+      <div class="card-image">
+        <img [src]="recipe.image_path || 'assets/default.jpg'" alt="recipe">
+        <div class="card-badge" [attr.data-type]="recipe.type">{{ recipe.type }}</div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-meta">
+          <span><i class="bi bi-clock"></i> {{ recipe.prep_time }} דק'</span>
+          <div class="stars">
+            <i class="bi bi-star-fill text-warning"></i>
+            <span>{{ recipe.rating || 0 | number:'1.1-1' }}</span>
+          </div>
+        </div>
+        <h4 class="card-title">{{ recipe.title }}</h4>
+        <button class="action-btn" [routerLink]="['/recipe', recipe.id]">למתכון המלא</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center" *ngIf="!isLoading && displayedRecipes.length < filteredRecipes.length">
+    <div #loader class="dots-loader">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+</div>

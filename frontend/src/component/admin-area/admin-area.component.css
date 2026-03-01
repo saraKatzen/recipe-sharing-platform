@@ -1,0 +1,325 @@
+.admin-container {
+  padding: 40px;
+  max-width: 1000px;
+  margin: 100px auto; /* כדי שלא ייבלע תחת ה-Navbar הקבוע */
+  background: #fdfaf6;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  direction: rtl;
+}
+
+h1 {
+  color: #321f00;
+  font-weight: 800;
+  margin-bottom: 30px;
+  border-bottom: 3px solid #f39c12;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px; /* יוצר רווח בין השורות */
+}
+
+.admin-table thead th {
+    background: transparent;
+    color: #888;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 10px 20px;
+    border: none;
+}
+
+.admin-table tbody tr {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.admin-table td {
+    padding: 20px;
+    vertical-align: middle;
+}
+
+.admin-table td:first-child {
+    border-radius: 0 12px 12px 0; /* עיגול פינות בצד ימין (RTL) */
+}
+
+.admin-table td:last-child {
+    border-radius: 12px 0 0 12px; /* עיגול פינות בצד שמאל */
+}
+
+/* עיצוב תגיות (Badges) לתפקידים */
+.badge-role {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.role-admin { background: #ffeaa7; color: #d63031; }
+.role-uploader { background: #fab1a0; color: #e17055; }
+.role-reader { background: #dfe6e9; color: #636e72; }
+/* עיצוב אזור הטאבים */
+.tabs-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #7f8c8d;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* העיצוב של הטאב הפעיל */
+.tab-btn.active {
+  background-color: #f39c12; /* הצבע הכתום שלך */
+  color: white;
+  box-shadow: 0 4px 10px rgba(243, 156, 18, 0.3);
+}
+
+.tab-btn:hover:not(.active) {
+  background-color: #fcefd0; /* כתום בהיר מאוד בהובר */
+  color: #d35400;
+}
+
+/* עיצוב קטן לאייקון המשתמש */
+.user-avatar {
+  width: 35px; height: 35px; 
+  background: #eee; 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  color: #555;
+}
+
+/* צבעים לתפקידים */
+.badge-admin { background: #ffeaa7; color: #d63031; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; }
+.badge-uploader { background: #55efc4; color: #00b894; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; }
+.badge-reader { background: #dfe6e9; color: #636e72; padding: 5px 10px; border-radius: 15px; font-size: 0.8em; }
+/* עיצוב לתמונה בתוך העיגול */
+.user-avatar {
+  width: 40px; 
+  height: 40px; 
+  background: #eee; 
+  border-radius: 50%; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  overflow: hidden; /* קריטי! חותך את התמונה לעיגול */
+  border: 2px solid white; /* מסגרת לבנה יפה */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* שומר על פרופורציות התמונה שלא תימעך */
+}
+
+/* סידור הכפתורים בשורה */
+.actions-wrapper {
+  display: flex;
+  gap: 10px;
+}
+
+/* עיצוב כפתור המחיקה */
+.btn-delete {
+  background: #ffebee;
+  color: #c0392b;
+  border: 1px solid #ffcdd2;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-delete:hover {
+  background: #c0392b;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* שיפור קטן לכפתור האישור שיתאים לגודל */
+.btn-approve {
+  padding: 0;
+  width: 35px; 
+  height: 35px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+/* 1. המיכל של התמונה - יוצר את העיגול */
+.user-avatar {
+    width: 45px;          /* גובה קטן וקבוע */
+    height: 45px;         /* רוחב זהה לגובה */
+    border-radius: 50%;   /* הופך לעיגול מושלם */
+    overflow: hidden;     /* חותך כל מה שיוצא מהעיגול */
+    border: 2px solid #f39c12; /* מסגרת דקה בצבע האתר ליופי */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa; /* צבע רקע למקרה שהתמונה נטענת לאט */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 2. התמונה עצמה בתוך העיגול */
+.profile-img {
+    width: 100%;          /* תתפרסי על כל רוחב העיגול */
+    height: 100%;         /* תתפרסי על כל גובה העיגול */
+    object-fit: cover;    /* הכי חשוב: שומר על פרופורציות ולא מותח את התמונה */
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-right: 5px solid #eee; /* קו דקורטיבי בצד */
+}
+
+/* צבעים שונים לכל כרטיס */
+.stat-card.total { border-right-color: #ab6d02; }
+.stat-card.uploaders { border-right-color: #c67400; }
+.stat-card.admins { border-right-color: #fdb044; }
+
+.stat-icon {
+  font-size: 2rem;
+  color: #bdc3c7;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #2c3e50;
+}
+.user-avatar i {
+    font-size: 1.2rem;
+    color: #95a5a6;
+}
+
+/* כפתור האישור בבקשות הממתינות - שיהיה קצת יותר בולט */
+.tab-btn.active {
+    border-bottom: 3px solid white; /* מוסיף פס מתחת לטאב הפעיל */
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px; /* צמצום המרווח בין הכרטיסים */
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: white;
+  padding: 10px 15px; /* צמצום דרמטי של הגובה (למעלה ולמטה 10px) */
+  border-radius: 10px; /* פינות מעט פחות עגולות למראה נקי */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-right: 4px solid #eee; 
+  height: 60px; /* קיבוע גובה נמוך לכל הכרטיסים */
+}
+
+.stat-icon {
+  font-size: 1.4rem; /* הקטנת האייקון שלא ימתח את הכרטיס לגובה */
+  color: #bdc3c7;
+  width: 30px;
+  text-align: center;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-label {
+  font-size: 0.8rem; /* הקטנת הטקסט של הכותרת */
+  color: #7f8c8d;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.stat-value {
+  font-size: 1.2rem; /* הקטנת המספר */
+  font-weight: 800;
+  color: #2c3e50;
+  line-height: 1.2;
+}
+.btn-delete {
+  background-color: #fff5f5;
+  color: #e74c3c;
+  border: 1px solid #fab1a0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-delete:hover {
+  background-color: #e74c3c;
+  color: white;
+  box-shadow: 0 2px 5px rgba(231, 76, 60, 0.3);
+}
+
+/* שדרוג קטן לכפתור האישור שיהיה באותו קו עיצובי */
+.btn-approve {
+  background-color: #f0fff4;
+  color: #27ae60;
+  border: 1px solid #c6f6d5;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-approve:hover {
+  background-color: #27ae60;
+  color: white;
+}

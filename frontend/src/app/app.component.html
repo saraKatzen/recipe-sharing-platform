@@ -1,0 +1,65 @@
+<div class="main-links">
+  <div class="link-wrapper teal">
+    <a routerLink="/home" routerLinkActive="active" class="logo-link">
+      <img src="assets/2.png" alt="לוגו דף הבית" class="nav-logo-img">
+    </a>
+    <div class="magic-line"><span></span><span></span><span></span><span></span></div>
+  </div>
+  <!-- קישורים -->
+  <div class="link-wrapper indigo">
+    <a (click)="scrollToSection('about-section')" class="nav-link" style="cursor: pointer;">
+      <i class="fas fa-info-circle"></i> קצת עלינו
+    </a>
+    <div class="magic-line"></div>
+  </div>
+
+  <div class="link-wrapper orange">
+    <a (click)="scrollToSection('faq-section')" class="nav-link" style="cursor: pointer;">
+      <i class="fas fa-question-circle"></i> שאלות נפוצות
+    </a>
+    <div class="magic-line"></div>
+  </div>
+  <div class="link-wrapper blue">
+    <a routerLink="/recipes" routerLinkActive="active" ><i class="fas fa-utensils"></i>
+      מתכונים</a>
+    <div class="magic-line"><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="link-wrapper indigo">
+    <a routerLink="/search" routerLinkActive="active" ><i class="fas fa-search"></i> חיפוש</a>
+    <div class="magic-line"><span></span><span></span><span></span><span></span></div>
+  </div>
+<!-- ניהול רק למנהל -->
+  <ng-container *ngIf="authService.isAdmin()">
+    <div class="link-wrapper orange">
+      <a routerLink="/admin" routerLinkActive="active" > <i class="fas fa-user-shield"></i>
+        ניהול</a>
+      <div class="magic-line"><span></span><span></span><span></span><span></span></div>
+    </div>
+  </ng-container>
+
+  <div class="link-wrapper pink"
+    *ngIf="authService.IsLoggedIn && (authService.isAdmin() || authService.UserRole === 'Uploader')">
+    <a routerLink="/add-recipe" routerLinkActive="active" > <i class="fas fa-plus-circle"></i>
+      הוספת מתכון</a>
+    <div class="magic-line"><span></span><span></span><span></span><span></span></div>
+  </div>
+  <div class="link-wrapper green" *ngIf="authService.IsLoggedIn">
+    <a routerLink="/profile" routerLinkActive="active" > <i class="fas fa-user-circle"></i> אזור
+      אישי</a>
+    <div class="magic-line"><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="link-wrapper purple" *ngIf="!authService.IsLoggedIn">
+    <a routerLink="/auth" routerLinkActive="active" #rla="routerLinkActive"><i class="fas fa-sign-in-alt"></i>
+      התחברות</a>
+    <div class="magic-line"><span></span><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="link-wrapper red" *ngIf="authService.IsLoggedIn">
+    <a (click)="authService.logout()" style="cursor: pointer;"> <i class="fas fa-sign-out-alt"></i>שלום,{{
+      authService.Username }} | התנתקות</a>
+    <div class="magic-line"><span></span><span></span><span></span><span></span></div>
+  </div>
+</div>
+<router-outlet></router-outlet>

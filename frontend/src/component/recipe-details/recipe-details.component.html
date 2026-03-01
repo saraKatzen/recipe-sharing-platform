@@ -1,0 +1,169 @@
+<button class="focus-mode-toggle" (click)="toggleFocusMode()">
+  <i class="fas" [ngClass]="isFocusMode ? 'fa-times' : 'fa-eye'"></i>
+  {{ isFocusMode ? 'יציאה ממצב קריאה' : 'מצב קריאה ממוקד' }}
+</button>
+
+<div class="loader-container" *ngIf="isLoading">
+  <div class="spinner"></div>
+  <p>מכין את המתכון...</p>
+</div>
+
+<div [class.focus-active]="isFocusMode" *ngIf="!isLoading && recipe">
+  <div class="container-custom mt-4">
+    <div class="row no-gutters align-items-stretch">
+
+      <div class="col-lg-5 text-right order-lg-1">
+        <div class="recipe-info-card h-100">
+          <span class="recipe-badge-small">{{ recipe.type }}</span>
+          <h1 class="recipe-title-compact mt-2">{{ recipe.title }}</h1>
+
+          <div class="recipe-stats-strip my-3">
+            <div class="stat-box timer-trigger" (click)="toggleTimer()" [class.timer-active]="showTimer"
+              title="לחץ להפעלת טיימר">
+              <i class="far fa-clock"></i>
+              <span>{{ recipe.prep_time }} דק'</span>
+              <small class="timer-hint">הפעל טיימר</small>
+            </div>
+
+            <div class="stat-box">
+              <i class="fas fa-star text-warning"></i>
+              <span>{{ recipe.rating | number:'1.1-1' }}</span>
+            </div>
+
+            <div class="stat-box">
+              <i class="fas fa-list-ul"></i>
+              <span>{{ recipe.ingredients?.length }} רכיבים</span>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center gap-3 mt-4">
+            <button class="like-btn" [class.active]="liked" (click)="onToggleLike(recipe.id)">
+              <i class="fa-thumbs-up" [ngClass]="liked ? 'fas' : 'far'"></i>
+              <span>{{ likesCount > 0 ? likesCount : 'אהבתי' }}</span>
+            </button>
+            <button class="fav-btn" [class.is-fav]="isFavorite" (click)="onToggleFavorite(recipe.id)">
+              <i [ngClass]="isFavorite ? 'fas fa-heart' : 'far fa-heart'"></i>
+              <span>{{ isFavorite ? 'במועדפים' : 'למועדפים' }}</span>
+            </button>
+            <div class="stars-rating-mini">
+              <button *ngFor="let s of [1,2,3,4,5]" (click)="onRate(recipe.id, s)" class="star-btn">
+                {{ s <= recipe.rating ? '⭐' : '☆' }} </button>
+            </div>
+          </div>
+
+          <div class="inline-timer-container" *ngIf="showTimer">
+            <div class="timer-card-inline">
+              <button class="close-timer-btn" (click)="showTimer = false">×</button>
+              <span class="timer-label">טיימר פעיל</span>
+              <div class="timer-display-inline">{{ formatTime(timeLeft) }}</div>
+              <div class="timer-controls-inline">
+                <button (click)="startTimer()" [disabled]="timerRunning" class="control-btn play">
+                  <i class="fas fa-play"></i>
+                </button>
+                <button (click)="pauseTimer()" class="control-btn pause">
+                  <i class="fas fa-pause"></i>
+                </button>
+                <button (click)="resetTimer()" class="control-btn reset">
+                  <i class="fas fa-undo"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-7 order-lg-2">
+        <div class="gallery-layout">
+          <div class="thumb-vertical-strip">
+            <div *ngFor="let img of recipe.images; let i = index" (click)="changeImage(i)" class="thumb-box-v"
+              [class.active]="selectedImage === img">
+              <img [src]="img">
+            </div>
+          </div>
+
+          <div class="main-img-container">
+            <button class="action-overlay-btn download-btn" (click)="downloadImage()" title="הורד תמונה">
+              <i class="fas fa-download"></i>
+            </button>
+
+            <button class="nav-btn prev" (click)="prevImage()"><i class="fas fa-chevron-right"></i></button>
+            <div class="image-wrapper">
+              <img [src]="selectedImage" class="img-main-view" [class.fade-in]="isFading">
+            </div>
+            <button class="nav-btn next" (click)="nextImage()"><i class="fas fa-chevron-left"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row">
+      <div class="col-md-8 text-right">
+        <div class="instructions-wrapper">
+          <h3 class="section-title"><i class="fas fa-book-open ml-2"></i>הוראות הכנה</h3>
+          <div class="instructions-content mt-4">
+            {{ recipe.instructions }}
+          </div>
+        </div>
+
+        <button *ngIf="userRole === 'Admin'" (click)="onDelete()" class="btn-delete-recipe mt-5">
+          מחק מתכון 🗑️
+        </button>
+      </div>
+
+      <div class="col-md-4">
+        <div class="ingredients-card">
+          <h4 class="ing-title"><i class="fas fa-shopping-basket ml-2"></i>מצרכים לסיום</h4>
+          <p class="small text-muted mb-3">סמנו מצרכים שכבר הכנתם:</p>
+          <ul class="ing-list-interactive">
+            <li *ngFor="let ing of recipe.ingredients; let i = index" class="ing-check-item">
+              <label class="check-container">
+                <input type="checkbox">
+                <span class="checkmark"></span>
+                <span class="ing-text">
+                  <span class="amount">{{ ing.amount }} </span>{{ ing.unit }}
+                  <span class="product">{{ ing.product }}</span>
+                </span>
+              </label>
+            </li>
+          </ul>
+          <button (click)="goToGallery()" class="btn btn-light w-100 mt-4">חזרה לגלריה</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="related-section mt-5" *ngIf="relatedRecipes.length > 0">
+  <h3 class="section-title mb-4">...אולי תאהבו גם</h3>
+
+  <div class="row">
+    <div class="col-md-4" *ngFor="let rel of relatedRecipes">
+      <div class="related-card" (click)="goToRecipe(rel.id)">
+        <div class="related-img-wrapper">
+          <img [src]="rel.image_path || 'assets/placeholder.jpg'" alt="{{ rel.title }}">
+          <span class="related-badge">{{ rel.type }}</span>
+        </div>
+        <div class="related-content">
+          <h5>{{ rel.title }}</h5>
+          <div class="related-meta">
+            <span><i class="far fa-clock"></i> {{ rel.prep_time }} דק'</span>
+            <span>⭐ {{ rel.rating | number:'1.1-1' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4 mb-5" *ngIf="relatedRecipes.length < allRelatedRecipes.length">
+
+    <div #loader class="dots-loader">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </div>
+</div>

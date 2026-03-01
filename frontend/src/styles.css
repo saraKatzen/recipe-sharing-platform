@@ -1,0 +1,7 @@
+@import url('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+html {
+  scroll-behavior: smooth;
+}
+body {
+  padding-top: 70px; 
+}

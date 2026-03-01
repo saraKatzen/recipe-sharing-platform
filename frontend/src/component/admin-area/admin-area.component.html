@@ -1,0 +1,108 @@
+<div class="admin-container">
+  <div class="admin-header">
+    <h1><i class="fas fa-user-shield"></i> פאנל ניהול</h1>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card total">
+      <div class="stat-icon"><i class="fas fa-users"></i></div>
+      <div class="stat-info">
+        <span class="stat-label">סך הכל רשומים</span>
+        <span class="stat-value">{{ getTotalUsers() }}</span>
+      </div>
+    </div>
+
+    <div class="stat-card uploaders">
+      <div class="stat-icon"><i class="fas fa-utensils"></i></div>
+      <div class="stat-info">
+        <span class="stat-label">יוצרי תוכן</span>
+        <span class="stat-value">{{ getUploaderCount() }}</span>
+      </div>
+    </div>
+
+    <div class="stat-card admins">
+      <div class="stat-icon"><i class="fas fa-user-shield"></i></div>
+      <div class="stat-info">
+        <span class="stat-label">מנהלי מערכת</span>
+        <span class="stat-value">{{ getAdminCount() }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="tabs-container">
+    <button (click)="viewMode = 'pending'" [class.active]="viewMode === 'pending'" class="tab-btn">
+      בקשות ממתינות ({{ pendingUsers.length }})
+    </button>
+    <button (click)="viewMode = 'all'" [class.active]="viewMode === 'all'" class="tab-btn">
+      כל המשתמשים ({{ allUsers.length }})
+    </button>
+  </div>
+
+  <div *ngIf="viewMode === 'pending' && pendingUsers.length === 0" class="no-requests">
+    <i class="fas fa-check-circle" style="font-size: 40px; color: #d5a104; margin-bottom: 10px;"></i>
+    <p>אין בקשות חדשות כרגע.</p>
+  </div>
+
+  <table class="admin-table"
+    *ngIf="(viewMode === 'pending' && pendingUsers.length > 0) || (viewMode === 'all' && allUsers.length > 0)">
+    <thead>
+      <tr>
+        <th>שם משתמש</th>
+        <th>אימייל</th>
+        <th>תפקיד</th>
+        <th>פעולות</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of (viewMode === 'pending' ? pendingUsers : allUsers)">
+        <td>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="user-avatar">
+              <img *ngIf="user.profile_image" [src]="getImageUrl(user.profile_image)" class="profile-img">
+
+              <div *ngIf="!user.profile_image" class="avatar-letter">
+                {{ user.name?.charAt(0)?.toUpperCase() }}
+              </div>
+              <div class="avatar-overlay">
+              </div>
+            </div>
+            <strong>{{ user.name }}</strong>
+          </div>
+        </td>
+        <td>{{ user.email }}</td>
+        <td>
+          <span class="badge" [ngClass]="{
+            'badge-admin': user.role === 'Admin',
+            'badge-uploader': user.role === 'Uploader',
+            'badge-reader': user.role === 'Reader'
+          }">
+            {{ user.role }}
+          </span>
+        </td>
+        <!-- <td>
+          <button *ngIf="user.role !== 'Uploader' && user.role !== 'Admin'" 
+                  (click)="approveUser(user.id)" class="btn-approve">
+            <i class="fas fa-check"></i> אשר
+          </button>
+          
+          <span *ngIf="user.role === 'Uploader'" class="text-success"><i class="fas fa-check-double"></i> מאושר</span>
+        </td> -->
+        <td>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <button *ngIf="user.role !== 'Uploader' && user.role !== 'Admin'" (click)="approveUser(user.id)"
+              class="btn-approve" title="אשר משתמש">
+              <i class="fas fa-check"></i>
+            </button>
+
+            <button *ngIf="user.role !== 'Admin'" (click)="deleteUser(user.id)" class="btn-delete"
+              title="מחק משתמש לצמיתות">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+
+            <span *ngIf="user.role === 'Uploader' && viewMode === 'pending'" class="text-success">
+              <i class="fas fa-user-check"></i> מאושר
+            </span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

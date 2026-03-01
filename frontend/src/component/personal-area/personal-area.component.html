@@ -1,0 +1,100 @@
+<div class="profile-container" *ngIf="currentUser">
+  <div class="profile-header card-shadow">
+    <div class="user-avatar-container">
+      <div class="user-avatar" (click)="fileInput.click()" title="לחץ להחלפת תמונה">
+        <img *ngIf="currentUser.profile_image" [src]="getImageUrl(currentUser.profile_image)" class="profile-img">
+
+        <div *ngIf="!currentUser.profile_image" class="avatar-letter">
+          {{ currentUser.name?.charAt(0)?.toUpperCase() }}
+        </div>
+        <div class="avatar-overlay">
+          <i class="fas fa-camera"></i>
+        </div>
+      </div>
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" style="display: none;">
+    </div>
+
+    <div class="user-info-text">
+      <div class="name-edit-wrapper">
+        <h2 *ngIf="!isEditingName">שלום, {{ currentUser.name }}!</h2>
+        <input *ngIf="isEditingName" [(ngModel)]="newName" class="edit-name-input" (keyup.enter)="saveName()">
+        <button (click)="isEditingName ? saveName() : startEditName()" class="btn-edit-name">
+          <i class="fas" [ngClass]="isEditingName ? 'fa-check' : 'fa-pen'"></i>
+        </button>
+      </div>
+
+      <div class="status-container">
+        <span class="badge" [ngClass]="{
+      'status-approved': currentUser.is_approved_uploader,
+      'status-pending': currentUser.request_pending && !currentUser.is_approved_uploader,
+      'status-regular': !currentUser.is_approved_uploader && !currentUser.request_pending
+    }">
+          <i class="fas" [ngClass]="{
+        'fa-check-circle': currentUser.is_approved_uploader,
+        'fa-clock': currentUser.request_pending && !currentUser.is_approved_uploader,
+        'fa-user': !currentUser.is_approved_uploader && !currentUser.request_pending
+      }"></i>
+          {{ currentUser.is_approved_uploader ? 'משתמש תוכן ' : (currentUser.request_pending ? 'בהמתנה לאישור' : 'משתמש רגיל') }}
+        </span>
+
+        <span class="role-text" *ngIf="currentUser.role">תפקיד: {{ currentUser.role }}</span>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <button *ngIf="currentUser.is_approved_uploader" routerLink="/add-recipe" class="btn-add">
+        <i class="fas fa-plus"></i> הוספת מתכון
+      </button>
+
+      <button *ngIf="!currentUser.is_approved_uploader && !currentUser.request_pending" (click)="sendRequest()"
+        class="btn-request">
+        <i class="fas fa-paper-plane"></i> בקשת הרשאת העלאה
+      </button>
+
+      <div *ngIf="currentUser.request_pending && !currentUser.is_approved_uploader" class="wait-box">
+        <p class="wait-message"><i class="fas fa-hourglass-half"></i> בקשתך נשלחה למנהל וממתינה לאישור</p>
+      </div>
+    </div>
+  </div>
+  <div class="tabs-nav">
+    <button (click)="activeTab = 'favorites'" [class.active]="activeTab === 'favorites'">
+      <i class="fas fa-heart"></i> המועדפים שלי ({{favoriteRecipes.length}})
+    </button>
+    <button (click)="activeTab = 'my-recipes'" [class.active]="activeTab === 'my-recipes'">
+      <i class="fas fa-utensils"></i> המתכונים שלי ({{userRecipes.length}})
+    </button>
+  </div>
+
+  <div class="tab-content mt-4" style="display: block !important;">
+
+    <div *ngIf="activeTab === 'favorites'" class="recipe-grid">
+      <div class="recipe-mini-card" *ngFor="let recipe of favoriteRecipes">
+        <div class="card-img-wrapper" [routerLink]="['/recipe', recipe.id]">
+          <img [src]="getImageUrl(recipe.image_path)" style="display: block; width: 100%; min-height: 150px;">
+        </div>
+        <div class="card-details">
+          <h4>{{ recipe.title }}</h4>
+          <button class="btn-view" [routerLink]="['/recipe', recipe.id]">צפייה</button>
+        </div>
+      </div>
+      <p *ngIf="favoriteRecipes.length === 0" class="empty-msg">עוד לא שמרת מתכונים במועדפים...</p>
+    </div>
+
+    <div *ngIf="activeTab === 'my-recipes'" class="recipe-grid">
+      <div class="recipe-mini-card" *ngFor="let recipe of userRecipes">
+        <div class="card-img-wrapper">
+          <img [src]="getImageUrl(recipe.image_path)" style="display: block; width: 100%; min-height: 150px;">
+        </div>
+        <div class="card-details">
+          <h4>{{ recipe.title }}</h4>
+          <div class="actions">
+            <button class="btn-edit" (click)="editRecipe(recipe.id)">
+              <i class="fas fa-edit"></i> עריכה
+            </button>
+          </div>
+        </div>
+      </div>
+      <p *ngIf="userRecipes.length === 0" class="empty-msg">עדיין לא העלית מתכונים משלך.</p>
+    </div>
+
+  </div>

@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap');
+
+.add-recipe-container {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 24px;
+    direction: rtl;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+    font-family: 'Heebo', sans-serif !important;
+    border-top: 6px solid #f39c12; /* נגיעת כתום עליונה לחיזוק המותג */
+}
+
+/* כותרת עם אייקון וקו מעוצב */
+h2 {
+    color: #1a1a1a;
+    font-weight: 800;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, #f39c12, transparent);
+    margin: 12px auto 0;
+    border-radius: 10px;
+}
+
+/* תוויות עם נקודה כתומה לידן */
+label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #333;
+}
+
+label::before {
+    content: "•";
+    color: #f39c12;
+    margin-left: 8px;
+    font-size: 1.2rem;
+}
+
+/* שדות קלט עם דגש כתום במיקוד */
+.form-control, .form-control-sm {
+    border-radius: 12px !important;
+    border: 1.5px solid #eee !important;
+    padding: 12px 15px !important;
+    background-color: #fcfcfc !important;
+    transition: all 0.25s ease !important;
+}
+
+.form-control:focus {
+    border-color: #f39c12 !important;
+    box-shadow: 0 0 0 4px rgba(243, 156, 18, 0.1) !important;
+    background-color: #fff !important;
+}
+
+/* שורת הרכיבים עם מסגרת כתומה עדינה */
+.ingredient-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: #fff;
+    padding: 12px;
+    border-radius: 16px;
+    border: 1px solid #f0f0f0 !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.ingredient-row:hover {
+    border-color: rgba(243, 156, 18, 0.4) !important;
+}
+
+/* כפתורי רכיבים */
+.btn-add-ing {
+    background-color: rgba(243, 156, 18, 0.05);
+    color: #f39c12;
+    border: 2px solid #f39c12;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 800;
+    transition: 0.3s;
+}
+
+.btn-add-ing:hover {
+    background-color: #f39c12;
+    color: white;
+}
+
+.btn-remove {
+    background: #fff;
+    color: #f39c12; /* שינוי לכתום במקום אדום למראה אחיד */
+    border: 1px solid #eee;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    transition: 0.2s;
+}
+
+.btn-remove:hover {
+    background: #f39c12;
+    color: white;
+    border-color: #f39c12;
+}
+
+/* כפתור שליחה ראשי - שדרוג נוכחות */
+.btn-submit-main {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%) !important;
+    color: white !important;
+    border: none;
+    border-radius: 18px;
+    font-size: 1.25rem;
+    font-weight: 900;
+    margin-top: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border-bottom: 4px solid #000;
+}
+
+.btn-submit-main:hover:not(:disabled) {
+    background: #f39c12 !important;
+    border-bottom-color: #d3850e;
+    transform: translateY(-2px);
+}
+
+/* טקסט עזר ועיצוב קבצים */
+.text-muted {
+    color: #f39c12 !important; /* טקסט הערות בכתום עדין */
+    font-weight: 500;
+}
+
+input[type="file"]::file-selector-button {
+    background-color: #f39c12;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 8px;
+    margin-left: 10px;
+    cursor: pointer;
+}

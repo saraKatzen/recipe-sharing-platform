@@ -1,0 +1,94 @@
+/* דריסת כרטיס הבסיס */
+.card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+    background-color: #ffffff;
+}
+
+/* עיצוב כותרת הכרטיס */
+.card-header {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%) !important;
+    padding: 30px !important;
+    border-bottom: none !important;
+}
+
+.card-header h3 {
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* עיצוב גוף הכרטיס */
+.card-body {
+    padding: 40px !important;
+}
+
+/* שדרוג שדות הקלט (Inputs) */
+.form-label {
+    font-weight: 600;
+    color: #34495e;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border-radius: 12px !important;
+    padding: 12px 15px !important;
+    border: 2px solid #f1f2f6 !important;
+    transition: all 0.3s ease !important;
+    background-color: #f8f9fa !important;
+}
+
+.form-control:focus {
+    border-color: #f39c12 !important;
+    box-shadow: 0 0 0 4px rgba(243, 156, 18, 0.1) !important;
+    background-color: #fff !important;
+}
+
+/* עיצוב הכפתור הראשי */
+.btn-success {
+    background: linear-gradient(135deg, #f39c12 0%, #d35400 100%) !important;
+    border: none !important;
+    border-radius: 12px !important;
+    padding: 12px !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    transition: transform 0.2s, box-shadow 0.2s !important;
+    margin-top: 10px;
+}
+
+.btn-success:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 5px 15px rgba(211, 84, 0, 0.3) !important;
+    filter: brightness(1.1);
+}
+
+/* עיצוב תחתית הכרטיס (הקישור למטה) */
+.card-footer {
+    background-color: #fff !important;
+    border-top: 1px solid #f1f2f6 !important;
+    padding: 20px !important;
+}
+
+.card-footer a {
+    color: #7f8c8d !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.card-footer a:hover {
+    color: #f39c12 !important;
+}
+
+/* עיצוב הודעת שגיאה */
+.alert-danger {
+    border-radius: 12px !important;
+    border: none !important;
+    background-color: #ff7675 !important;
+    color: white !important;
+    font-weight: 600;
+}

@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+instance/*.db
+
+# Flask
+instance/
+
+# Angular
+node_modules/
+dist/
+
+# IDE
+.idea/
+.vscode/
+
+# Environment
+.env

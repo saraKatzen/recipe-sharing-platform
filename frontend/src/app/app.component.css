@@ -1,0 +1,187 @@
+html {
+  scroll-behavior: smooth;
+}
+/* משתני צבעים - מבוססים על גווני הכתום והחום של האתר */
+.teal { --c: #fcedd6; }   /* כתום מותג */
+.blue { --c: #fbcca3; }   /* כתום כהה */
+.indigo { --c: #fc8f46; } /* חום-כתום */
+.pink { --c: #e38d04; }
+.orange { --c: #ce7f00; }
+.green { --c: #9b6104; }
+.purple { --c: #5e3b01; }
+.red { --c: #321f00; }
+/* סגנון נאב-בר */
+.custom-nav {
+  position: fixed; top: 0; right: 0; left: 0;
+  height: 85px; 
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px);
+  /* סיומת דקה כתומה בתחתית כל הנאב-בר */
+  
+  z-index: 1000; direction: rtl;
+  box-shadow: 5 10px 80px #f39c12;
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  margin-bottom: 200px;
+}
+/* עיצוב תוכן הנאב-בר */
+.nav-content {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; max-width: 1400px; margin: 0 auto; height: 120%;
+}
+
+.main-links { display: flex; gap: 40px; height: 270%; align-items: center; border-bottom: 1px solid #f39c12;margin: 3px; }
+
+.link-wrapper {
+  position: relative; display: flex; align-items: center; height: 100%;
+  transition: all 0.3s ease;margin-bottom: 12px;
+}
+
+.link-wrapper a {
+  text-decoration: none !important; 
+  color: #2c3e50 !important;
+  font-size: 1.1rem; 
+  font-weight: 700; 
+  /* padding: 10px 18px; */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* רווח בין האייקון לטקסט */
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  /* margin-top: 12px; */
+}
+
+
+
+/* פס קסם תחתון לכל קישור */
+.magic-line {
+  /* margin-bottom: 12px; */
+  /* margin-top: 8px; */
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 4px; 
+  background: var(--c);
+  transform: scaleX(0);
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 10px 10px 0 0;
+  /* margin-bottom: 15px; */
+}
+
+.link-wrapper:hover .magic-line,
+.link-wrapper a.active + .magic-line { 
+  transform: scaleX(0.7); /* הפס נפרס ב-70% מרוחב הכפתור */
+}
+
+/* עיצוב כפתור התפריט (הצד) */
+.side-opener {
+  width: 45px; height: 45px; 
+  background: #f39c12; 
+  border: none;
+  cursor: pointer; border-radius: 12px; 
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.2);
+}
+
+.side-opener:hover { 
+  transform: rotate(90deg); 
+  background: #e67e22;
+}
+
+/* אייקונים בתוך הקישורים */
+.link-wrapper i {
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+
+.link-wrapper:hover i {
+  transform: translateY(-2px);
+}
+/* מבטיח שהקישורים לא יתכווצו וישמרו על קריאות */
+.main-links {
+    display: flex;
+    gap: 8px; /* צמצום קטן של הרווח בין הקישורים כדי להכניס את כולם בשורה */
+    flex-wrap: nowrap;
+}
+
+.link-wrapper a {
+    white-space: nowrap; /* מונע מהטקסט לרדת שורה */
+    padding: 8px 12px;   /* ריפוד מעט יותר קטן למניעת צפיפות */
+    font-size: 1rem;     /* גודל גופן מאוזן */
+}
+
+/* הדגשת האייקונים בכתום */
+.link-wrapper i {
+    color: #f39c12;
+    font-size: 1.1rem;
+}
+img{
+  height: 40px;
+  width: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+/* עיצוב לוגו השף */
+.chef-logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.chef-hat-icon {
+    margin-bottom: -5px; /* מצמיד את הכובע לטקסט */
+    transition: transform 0.3s ease;
+}
+
+.brand-text {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #321f00; /* החום הכהה */
+    letter-spacing: -1px;
+}
+
+.orange-text {
+    color: #f39c12; /* כתום מותג */
+}
+
+
+/* תיקון רווח לתוכן האתר */
+.page-container {
+    padding-top: 140px;
+}
+/* זה אומר לדפדפן לעצור 100 פיקסלים לפני ה-ID */
+[id] {
+  scroll-margin-top: 100px;
+}
+.navbar {
+  position: fixed; /* גורם לו להישאר קבוע */
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* מוודא שהוא תמיד מעל התוכן */
+  background-color: #ffffff; /* חובה לתת רקע כדי שהתוכן לא ייראה מתחתיו */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* מוסיף צל עדין למראה מקצועי */
+}
+
+/* הערה: בגלל שהתפריט "צף", צריך להוסיף רווח לראש הדף ב-home */
+.home-wrapper {
+  margin-top: 80px; /* הגובה של התפריט שלך */
+}
+/* המיכל שעוטף את כל הקישורים ששלחת */
+.main-links {
+  position: fixed;   /* מצמיד את התפריט למסך */
+  top: 0;            /* מצמיד אותו לתקרה */
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 70px;      /* הגובה של התפריט שלך */
+  background-color: #ffffff; /* חייב צבע רקע כדי שלא יהיה שקוף בגלילה */
+  z-index: 1000;     /* מוודא שהוא תמיד מעל כל תוכן אחר */
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+  gap: 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* צל קטן שנותן תחושת עומק */
+}

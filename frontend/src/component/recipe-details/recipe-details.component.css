@@ -1,0 +1,242 @@
+/* --- הגדרות בסיס --- */
+.container-custom {
+  max-width: 1150px;
+  margin: 0 auto;
+  direction: rtl;
+  padding-bottom: 60px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- כרטיס המידע (צד ימין) --- */
+.recipe-info-card {
+  padding: 30px 25px; /* יותר מרווח למעלה/למטה, פחות בצדדים */
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center;  <-- בוטל המרכוז האנכי */
+  justify-content: flex-start; /* הכל מתחיל מלמעלה */
+  position: relative;
+  border-right: 5px solid #f39c12;
+}
+
+/* תגית סוג המתכון */
+.recipe-badge-small {
+  background: #f39c12;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 5px 12px;
+  border-radius: 50px;
+  align-self: flex-start; /* נשאר בצד ימין */
+  margin-bottom: 15px;
+}
+
+/* --- כותרת ראשית והפס הכתום (מרוכזים) --- */
+.recipe-title-compact {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #2d3436;
+  margin: 0 0 30px 0;
+  line-height: 1.1;
+  position: relative;
+  text-align: center; /* מרכוז הטקסט */
+}
+
+/* הפס הכתום - מרוכז */
+.recipe-title-compact::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  /* טכניקה למרכוז אבסולוטי */
+  right: 50%;
+  transform: translateX(50%);
+  width: 100px;
+  height: 4px;
+  background: #f39c12;
+  border-radius: 10px;
+}
+
+/* --- סטטיסטיקות --- */
+.recipe-stats-strip {
+  display: flex;
+  gap: 10px;
+  margin: 20px auto; /* מרכוז הסטריפ עצמו */
+  flex-wrap: wrap;
+  justify-content: center; /* מרכוז האלמנטים בפנים */
+}
+
+.stat-box {
+  background: #fff8e1;
+  color: #e67e22;
+  padding: 8px 15px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid #ffe0b2;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.stat-box.timer-trigger { cursor: pointer; border-color: #f39c12; }
+.stat-box.timer-trigger:hover, .timer-active {
+  background: #f39c12 !important; color: white !important;
+}
+.timer-hint { font-size: 0.7em; opacity: 0.8; margin-right: 5px; }
+
+/* --- שורת הכפתורים --- */
+.d-flex.align-items-center.gap-3.mt-4 {
+    gap: 10px !important;
+    margin-top: 20px !important;
+    flex-wrap: wrap;
+    justify-content: center; /* מרכוז הכפתורים */
+}
+
+.like-btn, .fav-btn {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #555;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.like-btn:hover, .fav-btn:hover {
+  border-color: #f39c12; color: #f39c12; background: #fffdf6;
+}
+
+.like-btn.active, .fav-btn.is-fav {
+  background: #f39c12; border-color: #f39c12; color: white;
+}
+
+.star-btn {
+    font-size: 1.3rem;
+    background: none; border: none; cursor: pointer;
+    color: #ffd700; transition: 0.2s; padding: 0 3px;
+}
+.star-btn:hover { transform: scale(1.1); }
+
+
+/* --- גלריה: הדוקה וממורכזת --- */
+.gallery-layout {
+  display: flex;
+  gap: 15px;
+  height: 450px; /* גובה הדוק יותר */
+  width: 100%;
+  /* זה מיישר את התמונות הקטנות והגדולה לאמצע הגובה */
+  align-items: center;
+}
+
+.thumb-vertical-strip {
+  display: flex; flex-direction: column; gap: 8px;
+  /* גורם לתמונות הקטנות להיות מרוכזות אנכית */
+  justify-content: center;
+  padding: 2px; width: 80px; flex-shrink: 0;
+  max-height: 100%; /* שלא יחרוג מהגובה */
+}
+
+.thumb-box-v {
+  width: 70px; height: 70px;
+  border-radius: 10px; overflow: hidden;
+  cursor: pointer; opacity: 0.6; border: 2px solid transparent; transition: 0.3s;
+}
+.thumb-box-v.active { opacity: 1; border-color: #f39c12; }
+.thumb-box-v img { width: 100%; height: 100%; object-fit: cover; }
+
+.main-img-container {
+  flex-grow: 1; position: relative; border-radius: 15px;
+  overflow: hidden; background: #f8f9fa;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  height: 100%; /* ממלא את כל הגובה של הגלריה */
+}
+
+.img-main-view {
+  width: 100%; height: 100%;
+  object-fit: cover; /* קריטי: ממלא את הדיב בלי שוליים לבנים */
+  object-position: center; transition: opacity 0.4s ease; display: block;
+}
+
+/* כפתורי ניווט */
+.nav-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9); border: none;
+  width: 40px; height: 40px; border-radius: 50%;
+  font-size: 1rem; color: #f39c12; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-btn:hover { background: #f39c12; color: white; }
+.nav-btn.prev { right: 15px; } .nav-btn.next { left: 15px; }
+
+.action-overlay-btn {
+    position: absolute; top: 15px; left: 15px; z-index: 20;
+    background: rgba(255,255,255,0.9); border: none; border-radius: 50%;
+    width: 35px; height: 35px; color: #f39c12; cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    display: flex; align-items: center; justify-content: center;
+}
+.action-overlay-btn:hover { transform: scale(1.1); background: white; }
+
+/* --- שאר האלמנטים (ללא שינוי) --- */
+.ingredients-card {
+  background: #fff; border-radius: 15px; padding: 25px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  border-top: 4px solid #f39c12; position: sticky; top: 20px;
+}
+.ing-title { color: #2d3436; font-weight: 800; margin-bottom: 15px; font-size: 1.2rem; }
+.ing-title i { color: #f39c12; margin-left: 8px; }
+.ing-list-interactive { list-style: none; padding: 0; }
+.ing-check-item { margin-bottom: 10px; border-bottom: 1px solid #fcfcfc; padding-bottom: 8px; }
+.check-container { display: flex; align-items: center; position: relative; padding-right: 30px; cursor: pointer; font-size: 1rem; color: #444; }
+.check-container input { position: absolute; opacity: 0; }
+.checkmark { position: absolute; top: 2px; right: 0; height: 20px; width: 20px; background-color: #fff; border: 2px solid #ddd; border-radius: 5px; transition: 0.2s; }
+.check-container input:checked ~ .checkmark { background-color: #f39c12; border-color: #f39c12; }
+.checkmark:after { content: ""; position: absolute; display: none; left: 6px; top: 2px; width: 5px; height: 10px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.check-container input:checked ~ .checkmark:after { display: block; }
+.check-container input:checked ~ .ing-text { text-decoration: line-through; color: #aaa; }
+.amount { font-weight: 800; color: #f39c12; }
+
+.instructions-wrapper { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); margin-top: 30px; }
+.section-title { font-weight: 800; color: #2d3436; font-size: 1.5rem; margin-bottom: 15px; }
+.instructions-content { line-height: 1.8; font-size: 1.1rem; color: #333; white-space: pre-wrap; }
+
+.inline-timer-container { margin-top: 15px; animation: slideDown 0.3s ease-out; }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+.timer-card-inline { background: #333; color: white; border-radius: 12px; padding: 12px; text-align: center; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+.timer-label { font-size: 0.7rem; color: #aaa; text-transform: uppercase; }
+.timer-display-inline { font-size: 2rem; font-weight: 700; color: #f39c12; font-family: monospace; margin: 5px 0; }
+.timer-controls-inline { display: flex; justify-content: center; gap: 10px; }
+.control-btn { width: 30px; height: 30px; border-radius: 50%; border: none; cursor: pointer; background: rgba(255,255,255,0.2); color: white; display: flex; align-items: center; justify-content: center; }
+.control-btn:hover { background: #f39c12; }
+.close-timer-btn { position: absolute; top: 5px; left: 8px; background: none; border: none; color: #aaa; font-size: 1.2rem; cursor: pointer; }
+.btn-delete-recipe { background-color: #fff1f0; color: #cf1322; border: 1px solid #ffa39e; padding: 8px 20px; border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+.loader-container { height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.spinner { width: 50px; height: 50px; border: 4px solid #eee; border-top: 4px solid #f39c12; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.focus-mode-toggle { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: #333; color: white; border: none; padding: 10px 20px; border-radius: 50px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; font-weight: bold; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+.focus-active .gallery-layout, .focus-active .recipe-stats-strip, .focus-active .like-btn, .focus-active .fav-btn, .focus-active .ingredients-card, .focus-active hr, .focus-active .stars-rating-mini { display: none !important; }
+.focus-active .container-custom { max-width: 800px; }
+.focus-active .instructions-content { font-size: 1.4rem; line-height: 2.2; }
+.related-section { margin-top: 50px; padding-top: 30px; border-top: 1px solid #eee; }
+.related-card { border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 4px 10px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; height: 100%; }
+.related-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.related-img-wrapper { height: 160px; position: relative; }
+.related-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+.related-badge { position: absolute; top: 8px; right: 8px; background: #f39c12; color: white; padding: 3px 8px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; }
+.related-content { padding: 12px; }
+.related-content h5 { font-weight: 700; margin-bottom: 8px; color: #333; font-size: 1rem; }
+.dots-loader { display: flex; justify-content: center; gap: 6px; margin-top: 15px; }
+.dots-loader span { width: 10px; height: 10px; background-color: #f39c12; border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
+.dots-loader span:nth-child(1) { animation-delay: -0.32s; } .dots-loader span:nth-child(2) { animation-delay: -0.16s; }
+@keyframes bounce { 0%, 80%, 100% { transform: scale(0); opacity: 0.5; } 40% { transform: scale(1); opacity: 1; } }

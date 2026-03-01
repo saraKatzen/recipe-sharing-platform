@@ -1,0 +1,211 @@
+<div class="home-wrapper">
+  <section class="hero-section">
+    <video #heroVideo autoplay [muted]="true" loop playsinline preload="auto" class="hero-video">
+      <source src="assets/home.mp4" type="video/mp4">
+      דפדפן זה אינו תומך בנגן הווידאו.
+    </video>
+    <div class="hero-overlay">
+      <div class="hero-content">
+        <h1>?מה תרצו להכין היום</h1>
+        <div class="main-search-box">
+          <input type="text" placeholder="חפשו עוגה, פסטה או בשר..." (input)="onHeroSearch($event)"
+            class="hero-search-input">
+          <span class="search-icon"><i class="fas fa-search search-icon-fa"></i></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories-section py-5">
+    <div class="container text-center">
+      <div class="categories-grid">
+        <div class="category-item" (click)="onCategoryClick('סלטים')">
+          <div class="circle border-orange">
+            <img src="../../assets/סלטים.jpg">
+          </div>
+          <span class="category-name">סלטים</span>
+        </div>
+        <div class="category-item" (click)="onCategoryClick('מנה עיקרית')">
+          <div class="circle border-brown">
+            <img src="../../assets/עקרית.jpg">
+          </div>
+          <span class="category-name">מנה עיקרית</span>
+        </div>
+        <div class="category-item" (click)="onCategoryClick('קינוחים')">
+          <div class="circle border-orange">
+            <img src="../../assets/קינוחים.jpg">
+          </div>
+          <span class="category-name">קינוחים</span>
+        </div>
+        <div class="category-item" (click)="onCategoryClick('עוגות')">
+          <div class="circle border-brown">
+            <img src="../../assets/עוגה.jpg">
+          </div>
+          <span class="category-name">עוגות</span>
+        </div>
+        <div class="category-item" (click)="onCategoryClick('עוגיות')">
+          <div class="circle border-brown">
+            <img src="../../assets/עוגיות-שוקולד-ציפס.jpg">
+          </div>
+          <span class="category-name">עוגיות</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about-section" class="about-section">
+    <div class="container">
+      <div class="row align-items-center">
+
+        <div class="col-md-7 about-content">
+          <div class="badge-premium">מאז 2024</div>
+          <h2 class="main-title">הסיפור שמאחורי <span class="accent">השף</span></h2>
+
+          <div class="content-body">
+            <p class="lead">אנחנו מאמינים שהמטבח הוא הלב הפועם של הבית, המקום שבו טעמים הופכים לזיכרונות.</p>
+
+            <p class="description">
+              האתר הוקם כדי להנגיש את אומנות הבישול לכל אחד ואחת. לא מדובר רק ברשימת מצרכים, אלא בדרך ליצור חוויות. כאן
+              תמצאו מתכונים כשרים שנבחרו בקפידה, החל מבישול ביתי מסורתי ועד למנות גורמה מודרניות, הכל בשפה פשוטה וברורה.
+            </p>
+
+            <p class="description">
+              החזון שלנו הוא להפוך כל ארוחה לחגיגה. בעזרת הכלים הטכנולוגיים שפיתחנו, כמו "חיפוש המקרר", אנחנו עוזרים לכם
+              לצמצם בזבוז מזון ולגלות יצירתיות גם בימים עמוסים. אצלנו כל מתכון הוא הבטחה להצלחה.
+            </p>
+          </div>
+
+          <div class="features-list">
+            <div class="feature">
+              <i class="fas fa-utensils"></i>
+              <div>
+                <span class="f-title">איכות ללא פשרות</span>
+                <span class="f-desc">כל מתכון נבדק במטבח שלנו לפני הפרסום.</span>
+              </div>
+            </div>
+            <div class="feature">
+              <i class="fas fa-heart"></i>
+              <div>
+                <span class="f-title">בישול מהלב</span>
+                <span class="f-desc">דגש על טעמים ביתיים שמזכירים אמא.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="visual-stack">
+            <div class="main-circle">
+              <i class="fas fa-utensils"></i> <i class="fas fa-chef-hat"></i>
+            </div>
+            <div class="floating-card">
+              <span class="card-num">100%</span>
+              <span class="card-txt">חומרי גלם טבעיים</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="stats-row" id="stats-trigger">
+        <div class="stat-item">
+          <span class="stat-number">{{ counts['recipes'] }}+</span>
+          <span class="stat-label">מתכונים רשומים</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">{{ counts['visitors'] }}K</span>
+          <span class="stat-label">גולשים בחודש</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">{{ counts['chefs'] }}</span>
+          <span class="stat-label">שפי מומחים</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">{{ counts['experience'] }}+</span>
+          <span class="stat-label">שנות ניסיון</span>
+        </div>
+      </div>
+
+      <section id="faq-section" class="faq-section py-5">
+        <div class="container">
+          <div class="faq-header text-center mb-5">
+            <span class="sub-badge">יש לכם שאלות?</span>
+            <h2 class="section-title">שאלות <span class="orange-text">נפוצות</span></h2>
+            <div class="title-line"></div>
+          </div>
+
+          <div class="faq-list">
+            <div class="faq-item" *ngFor="let item of faqs; let i = index" [class.active]="activeFaq === i">
+              <div class="faq-question" (click)="toggleFaq(i)">
+                <span class="question-text">{{ item.q }}</span>
+                <div class="icon-wrapper">
+                  <i class="fas" [ngClass]="activeFaq === i ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                </div>
+              </div>
+              <div class="faq-answer" [class.show]="activeFaq === i">
+                <div class="answer-content">
+                  {{ item.a }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+
+          <div class="footer-col about">
+            <h4 class="footer-logo">ספר <span class="orange-text">המתכונים</span> שלי</h4>
+            <p>הבית שלך להשראה קולינרית יומיומית. אצלנו תמצאו מתכונים כשרים, פשוטים וטעימים לכל המשפחה.</p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+              <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h5>קישורים מהירים</h5>
+            <ul>
+              <li><a href="#">דף הבית</a></li>
+              <li><a href="#about-section">קצת עלינו</a></li>
+              <li><a href="#">הוספת מתכון</a></li>
+              <li><a href="#faq-section">שאלות נפוצות</a></li>
+              <li><a href="#">מדיניות פרטיות</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h5>מתכונים מובילים</h5>
+            <ul>
+              <li><a (click)="onCategoryClick('בשר')">מנות בשריות</a></li>
+              <li><a (click)="onCategoryClick('סלטים')">סלטים לשבת</a></li>
+              <li><a (click)="onCategoryClick('עוגות')">עוגות וקינוחים</a></li>
+              <li><a (click)="onCategoryClick('מרקים')">מרקים חמים</a></li>
+              <li><a (click)="onCategoryClick('צמחוני')">מנות צמחוניות</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h5>צרו קשר</h5>
+            <ul class="contact-info">
+              <li><i class="fas fa-map-marker-alt"></i> ירושלים, ישראל</li>
+              <li><i class="fas fa-phone"></i> 050-0000000</li>
+              <li><i class="fas fa-clock"></i> א'-ה': 09:00 - 18:00</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 כל הזכויות שמורות - ספר המתכונים שלי | נבנה באהבה לאוכל טוב</p>
+        </div>
+      </div>
+    </footer>
