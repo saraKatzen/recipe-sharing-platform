@@ -111,7 +111,7 @@ Relational integrity and object mapping are handled via SQLAlchemy.
 
 📥 Installation & Setup
 1️⃣ Clone the Repository
-git clone https://github.com/YOUR_USERNAME/recipe-sharing-platform.git
+git clone https://github.com/saraKatzen/recipe-sharing-platform.git
 cd recipe-sharing-platform
 🔧 Backend Setup (Flask)
 Create Virtual Environment
