@@ -1,137 +1,175 @@
-# 🍲 Recipe Sharing Platform
+🍲 Recipe Sharing Platform
 
-A full-stack web application for collaborative recipe sharing, built with Flask and Angular.
+A production-style Full Stack web application built with Flask and Angular, featuring role-based access control, a smart ingredient-matching algorithm, and dynamic image processing.
 
-This platform enables users to discover, upload, and manage recipes through a role-based permission system and an advanced ingredient matching algorithm.
+This project demonstrates backend architecture beyond basic CRUD operations, including algorithmic ranking logic, ORM-based modeling, permission enforcement, and structured file handling.
 
----
+🚀 Project Overview
 
-## 🚀 Project Overview
+The platform enables users to:
 
-The system supports multiple user roles (Reader, Uploader, Admin) and provides a structured environment for recipe management, approval workflows, and dynamic filtering.
+Discover recipes dynamically
 
-The backend follows an ORM approach using SQLAlchemy, with clean model inheritance and object-oriented design.
+Search recipes based on available ingredients
 
----
+Upload recipes with automatic image variations
 
-## 🛠 Tech Stack
+Manage personal content through role-based permissions
 
-**Backend**
+The backend follows an ORM-driven architecture using SQLAlchemy, applying object-oriented principles and model inheritance.
+The frontend is built with Angular using a modular component-based structure.
 
-* Python 3.13
-* Flask
-* SQLAlchemy (ORM)
-* SQLite
-* Pillow (image processing)
+🛠 Tech Stack
+Backend
 
-**Frontend**
+Python 3.13
 
-* Angular
-* TypeScript
-* Component-based architecture
-* Dynamic filtering & sorting
+Flask
 
----
+SQLAlchemy (ORM)
 
-## ✨ Key Features
+SQLite
 
-### 🔍 Smart Ingredient Matching Algorithm
+Pillow (image processing)
 
-Users can enter the ingredients they have at home.
-The server calculates a match score for each recipe using Python sets (intersection logic) and ranks recipes by relevance.
+RESTful API design
 
-Matching score is calculated as:
+Frontend
 
-```
-(number of matching ingredients) / (total required ingredients)
-```
+Angular
 
-Recipes are filtered and sorted server-side before being returned to Angular.
+TypeScript
 
----
+Component-based architecture
 
-### 🖼 Advanced Image Processing
+Dynamic filtering & sorting
+
+✨ Key Features
+🔍 Smart Ingredient Matching Algorithm
+
+Users can enter the ingredients they have available.
+
+The backend:
+
+Converts ingredient lists into Python sets
+
+Computes intersection between user ingredients and recipe ingredients
+
+Calculates a matching score:
+
+Matching Score = (Number of matching ingredients) / (Total required ingredients)
+
+Filters low-relevance results
+
+Sorts recipes by descending relevance score
+
+This ensures users see recipes requiring minimal additional purchases.
+
+🖼 Advanced Image Processing Pipeline
 
 When a recipe image is uploaded:
 
-* The original image is saved
-* Three additional variations are generated automatically using Pillow:
+The original image is saved
 
-  * Black & White
-  * Rotated
-  * Cropped / Modified effect
-* Image paths are stored in the database as structured data (JSON/string)
+Three additional variations are generated automatically using Pillow:
 
-This creates a dynamic image gallery per recipe.
+Black & White
 
----
+Rotated
 
-### 👥 Role-Based Access Control
+Cropped / Modified effect
 
-The system includes:
+All variation paths are stored in the database (JSON/string format)
 
-* **Reader** – browse, search, and rate recipes
-* **Uploader** – add new recipes (after admin approval)
-* **Admin** – approve uploaders, delete recipes, manage users
+This creates a dynamic gallery experience per recipe.
 
-Server-side decorators enforce permissions for protected routes.
+👥 Role-Based Access Control
 
----
+The system includes three user roles:
 
-### 🗂 Database Architecture
+Reader – browse, search, and rate recipes
 
-ORM-based models include:
+Uploader – add new recipes (after admin approval)
 
-* `BaseModel` (with shared ID & save logic)
-* `User` (roles, password, approval status)
-* `Recipe` (metadata, image paths, type)
-* `IngredientEntry` (One-to-Many relationship with Recipe)
+Admin – approve uploaders, delete recipes, manage users
 
-Relational integrity is handled via SQLAlchemy.
+All protected routes are enforced using server-side decorators.
 
----
+🗂 Database Architecture
 
-## 🧠 Backend Concepts Implemented
+ORM-based models:
 
-* Object-Oriented Programming
-* Model inheritance
-* RESTful API structure
-* Role validation decorators
-* Image storage organization
-* JSON-based field persistence
-* Algorithmic ranking system
+BaseModel – shared ID and save logic (inheritance-based design)
 
----
+User – authentication, roles, approval status
 
-## ▶ How to Run
+Recipe – metadata, image paths, recipe type
 
-### Backend
+IngredientEntry – One-to-Many relationship with Recipe
 
-```bash
+Relational integrity and object mapping are handled via SQLAlchemy.
+
+📥 Installation & Setup
+1️⃣ Clone the Repository
+git clone https://github.com/YOUR_USERNAME/recipe-sharing-platform.git
+cd recipe-sharing-platform
+🔧 Backend Setup (Flask)
+Create Virtual Environment
 cd backend
 python -m venv .venv
+Activate Environment (Windows)
 .venv\Scripts\activate
+Install Dependencies
 pip install -r requirements.txt
+Run the Server
 py -3.13 app.py
-```
 
-### Frontend
+Backend runs on:
 
-```bash
+http://localhost:5000
+💻 Frontend Setup (Angular)
+
+Open a new terminal:
+
 cd frontend
 npm install
 ng serve
-```
 
----
+Frontend runs on:
 
-## 🎯 Project Goals
+http://localhost:4200
+🗄 Database
 
-This project demonstrates:
+Database: SQLite
 
-* Full Stack architecture
-* Backend logic beyond CRUD
-* Algorithmic thinking
-* Structured database modeling
-* Permission management
-* File handling & image processing
+The database file is created automatically on first run (if not present).
+
+🔐 Security & Architecture Highlights
+
+Server-side role validation decorators
+
+Controlled uploader approval workflow
+
+Structured image storage organization
+
+JSON-based field persistence
+
+Separation between frontend and backend layers
+
+Clean OOP model inheritance
+
+🎯 What This Project Demonstrates
+
+Full Stack architecture
+
+Backend logic beyond CRUD
+
+Algorithmic thinking
+
+Structured database modeling
+
+Role-based permission systems
+
+File handling & image processing
+
+RESTful API design principles
