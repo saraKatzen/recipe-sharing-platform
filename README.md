@@ -6,7 +6,10 @@ This project demonstrates backend architecture beyond basic CRUD operations, inc
 -------------------------------------------------------------------------------
 
 
-https://github.com/user-attachments/assets/b30a04ca-d8b3-4ac5-8830-3a4fdf199fd9
+
+https://github.com/user-attachments/assets/463b574f-9e40-40c2-8aa8-d2d219c0f8d2
+
+
 
 
 -------------------------------------------------------------------------------
@@ -52,7 +55,11 @@ This ensures users see recipes requiring minimal additional purchases.
 -------------------------------------------------------------------------------
 
 
-https://github.com/user-attachments/assets/c288f6a1-6c35-4d26-99dd-368f675de409
+
+
+https://github.com/user-attachments/assets/e51f910d-cdf8-47dc-8169-e2e718d9a900
+
+
 
 
 -------------------------------------------------------------------------------
@@ -71,7 +78,11 @@ This creates a dynamic gallery experience per recipe.
 -------------------------------------------------------------------------------
 
 
-https://github.com/user-attachments/assets/2383f971-4354-4a43-83cc-36c949a04ef4
+
+
+
+https://github.com/user-attachments/assets/915829a9-f9ca-4386-afef-67d12b4c7248
+
 
 
 -------------------------------------------------------------------------------
