@@ -7,7 +7,8 @@ This project demonstrates backend architecture beyond basic CRUD operations, inc
 
 
 
-https://github.com/user-attachments/assets/463b574f-9e40-40c2-8aa8-d2d219c0f8d2
+
+![2026-03-17222451-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/969237be-1ea5-443a-b57a-15a274ee5d0d)
 
 
 
@@ -57,7 +58,8 @@ This ensures users see recipes requiring minimal additional purchases.
 
 
 
-https://github.com/user-attachments/assets/e51f910d-cdf8-47dc-8169-e2e718d9a900
+![2026-03-17222610-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/40156151-4eb9-45df-8699-8e283e25e5b1)
+
 
 
 
@@ -80,8 +82,8 @@ This creates a dynamic gallery experience per recipe.
 
 
 
+![2026-03-17222709-ezgif com-optimize](https://github.com/user-attachments/assets/71fb3e18-4b8f-44b4-911a-5591dec403bc)
 
-https://github.com/user-attachments/assets/915829a9-f9ca-4386-afef-67d12b4c7248
 
 
 
