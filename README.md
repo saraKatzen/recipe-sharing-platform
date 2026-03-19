@@ -6,8 +6,7 @@ This project demonstrates backend architecture beyond basic CRUD operations, inc
 -------------------------------------------------------------------------------
 
 
-![home page](https://github.com/user-attachments/assets/5e155bf8-df65-44be-afad-63533a857d62)
-
+https://github.com/user-attachments/assets/5e155bf8-df65-44be-afad-63533a857d62
 
 -------------------------------------------------------------------------------
 
