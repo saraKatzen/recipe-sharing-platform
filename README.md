@@ -5,7 +5,7 @@ This project demonstrates backend architecture beyond basic CRUD operations, inc
 
 -------------------------------------------------------------------------------
 
-![Home Page](./assets/home.gif)
+<video src="https://github.com/saraKatzen/recipe-sharing-platform/raw/main/assets/home.mp4" controls width="100%"></video>
 -------------------------------------------------------------------------------
 
 ## 🚀 Project Overview
