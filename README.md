@@ -6,11 +6,7 @@ This project demonstrates backend architecture beyond basic CRUD operations, inc
 -------------------------------------------------------------------------------
 
 
-
-
-![2026-03-17222451-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/969237be-1ea5-443a-b57a-15a274ee5d0d)
-
-
+![home page](https://github.com/user-attachments/assets/5e155bf8-df65-44be-afad-63533a857d62)
 
 
 -------------------------------------------------------------------------------
@@ -59,9 +55,6 @@ This ensures users see recipes requiring minimal additional purchases.
 
 
 ![2026-03-17222610-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/40156151-4eb9-45df-8699-8e283e25e5b1)
-
-
-
 
 
 -------------------------------------------------------------------------------
